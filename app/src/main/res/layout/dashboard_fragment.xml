@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<toolcloud.tum.toolcloudapp.layouts.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="@color/dashboard_background" >
+    <!--  scan Button -->
+    <Button
+        android:id="@+id/btn_scan"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/scan_90"
+        android:text="@string/dashboard_scan" />
+
+    <!--  Agg Button -->
+    <Button
+        android:id="@+id/btn_aggregate"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/agg_90"
+        android:text="@string/dashboard_aggregate" />
+
+    <!--  disagg Button -->
+    <Button
+        android:id="@+id/btn_disagg"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/disagg_90"
+        android:text="@string/dashboard_dissaggregate" />
+
+    <!--  location Button -->
+    <Button
+        android:id="@+id/btn_location"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/location_90"
+        android:text="@string/dashboard_update_loc"
+        android:clickable="false"/>
+
+    <!--  Settings Button -->
+    <Button
+        android:id="@+id/btn_settings"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/settings_90"
+        android:text="@string/dashboard_settings" />
+
+    <!--  About Button -->
+    <Button
+        android:id="@+id/btn_about"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/about_90"
+        android:text="@string/dashboard_about" />
+
+</toolcloud.tum.toolcloudapp.layouts.DashboardLayout>

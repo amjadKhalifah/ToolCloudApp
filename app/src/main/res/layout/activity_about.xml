@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/dashboard_background"
+    >
+
+<include layout="@layout/actionbar_layout" />
+<WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/webView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    />
+</LinearLayout>

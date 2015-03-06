@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:accordion="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+    <!-- Include Action Bar -->
+    <include layout="@layout/actionbar_layout"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <toolcloud.tum.toolcloudapp.component.AccordionView
+            android:id="@+id/accordion_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            accordion:header_layout_fold_button_id="@id/foldButton"
+            accordion:header_layout_id="@layout/accordion_header"
+            accordion:header_layout_label_id="@id/foldText"
+            accordion:section_bottom="@layout/accordion_footer"
+            accordion:section_container="@layout/accordion_section"
+            accordion:section_container_parent="@id/section_content"
+            accordion:section_headers="@array/accordion_sections"
+            accordion:section_visibility="@array/accordion_visibility"
+            android:background="#fff5f5f5"
+            android:orientation="vertical" >
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:shrinkColumns="*"
+
+                android:background="#ffffff"
+                android:layout_margin="10dp">
+
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/IdCell"
+                        android:text="ID"
+                        style="@style/tableCell" />
+
+                    <TextView
+                        android:id="@+id/IdValue"
+                        style="@style/tableCell"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:ellipsize="marquee"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="170dp"
+                        android:id="@+id/NameCell"
+                        android:text="Name"
+                        style="@style/tableCell" />
+
+                    <TextView
+                        android:id="@+id/NameValue"
+                        style="@style/tableCell" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/DerCell"
+                        android:text="Der"
+                        style="@style/tableCell" />
+
+                    <TextView
+                        android:id="@+id/DerValue"
+                        style="@style/tableCell" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/CompanyCell"
+                        android:text="Company"
+                        style="@style/tableCell" />
+
+                    <TextView
+                        android:id="@+id/CompanyValue"
+                        style="@style/tableCell" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/example_get_by_id"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ListView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100sp"
+                    android:id="@+id/contents_listView"
+                    android:background="@color/white"
+                    android:choiceMode="singleChoice" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ListView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100sp"
+                    android:id="@+id/tools_listView"
+                    android:background="@color/white"
+                    android:choiceMode="singleChoice" />
+            </LinearLayout>
+
+
+        </toolcloud.tum.toolcloudapp.component.AccordionView>
+    </ScrollView>
+
+</LinearLayout>

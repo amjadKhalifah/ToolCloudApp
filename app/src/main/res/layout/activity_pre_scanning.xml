@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dashboard_background"
+    android:orientation="vertical"
+ >
+    <!-- Include Action Bar -->
+    <include layout="@layout/actionbar_layout"/>
+
+    <TextView
+        style="@style/prescanning_text"
+        android:id="@+id/objectName"
+
+        />
+
+
+    <TextView
+        style="@style/prescanning_text"
+        android:id="@+id/objectType"
+
+        />
+
+    <TextView
+        android:id="@+id/objectId"
+        style="@style/prescanning_text" />
+
+
+    <Button
+        android:id="@+id/scanObjectBtn"
+        android:text="Scan An Object"
+        style="@style/prescanning_button"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp" />
+
+    <RelativeLayout
+        android:id="@+id/InnerRelativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/continueBtn"
+            android:text="@string/continue_btn"
+            android:clickable="false"
+            style="@style/prescanning_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+</LinearLayout>
