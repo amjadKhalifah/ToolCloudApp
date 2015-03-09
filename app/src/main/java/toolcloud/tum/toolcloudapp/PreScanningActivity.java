@@ -39,7 +39,7 @@ import toolcloud.tum.toolcloudapp.xml.ResultsHandler;
 
 public class PreScanningActivity extends Activity {
 
-    TextView objectName, objectType, objectId;
+    TextView objectName, objectType; //objectId;
     Button objectScanBtn, continueBtn;
     String scannedObject;
     private TextView title;
@@ -56,7 +56,7 @@ public class PreScanningActivity extends Activity {
         title.setText(getResources().getString(R.string.dashboard_scan));
         objectName = (TextView) findViewById(R.id.objectName);
         objectType = (TextView) findViewById(R.id.objectType);
-        objectId = (TextView) findViewById(R.id.objectId);
+//        objectId = (TextView) findViewById(R.id.objectId);
         objectScanBtn = (Button) findViewById(R.id.scanObjectBtn);
         continueBtn = (Button)findViewById(R.id.continueBtn);
         objectScanBtn.setOnClickListener(new View.OnClickListener() {
@@ -184,9 +184,9 @@ public class PreScanningActivity extends Activity {
                 objectName.setError(result.getName());
             }
             else {
-                objectId.setText(getResources().getString(R.string.object_id) + " " + result.getId());
-                objectType.append(getResources().getString(R.string.object_type) + " " + result.getType());
-                objectName.append(getResources().getString(R.string.object_name) + " " + result.getName());
+//                objectId.setText(getResources().getString(R.string.object_id) + " " + result.getId());
+                objectType.setText(getResources().getString(R.string.object_type) + " " + result.getType());
+                objectName.setText(getResources().getString(R.string.object_name) + " " + result.getName());
                 continueBtn.setClickable(true);
             }
         }

@@ -72,7 +72,7 @@ public class MachineDetailsActivity extends Activity {
                 b.putInt("intake",position); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }

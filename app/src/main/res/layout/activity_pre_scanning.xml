@@ -22,9 +22,9 @@
 
         />
 
-    <TextView
-        android:id="@+id/objectId"
-        style="@style/prescanning_text" />
+    <!--<TextView-->
+        <!--android:id="@+id/objectId"-->
+        <!--style="@style/prescanning_text" />-->
 
 
     <Button

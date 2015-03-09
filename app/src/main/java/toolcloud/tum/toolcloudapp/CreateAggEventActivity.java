@@ -156,7 +156,7 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
         }
     }
 
-    public String getepcisURL() {
+    public String getEpcisURL() {
         String query_url = "http://" ; //"http://217.110.56.76:80/epc-evo/capture"
         // read SharedPreferences
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -205,7 +205,7 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
         protected String doInBackground(String... params) {
             try {
 
-                URL urlToRequest = new URL(getepcisURL());
+                URL urlToRequest = new URL(getEpcisURL());
                 HttpURLConnection urlConnection =
                         (HttpURLConnection) urlToRequest.openConnection();
                 String authorization = new String(org.kobjects.base64.Base64.encode((getAuthenticationString()).getBytes()));
@@ -320,11 +320,11 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
             } else {
                 if (parentScan) {
 //                    pare.setText(getResources().getString(R.string.object_id) + " " + result.getId());
-                    parentObjectType.append(getResources().getString(R.string.object_type) + " " + result.getType());
-                    parentObjectName.append(getResources().getString(R.string.object_name) + " " + result.getName());
+                    parentObjectType.setText(getResources().getString(R.string.object_type) + " " + result.getType());
+                    parentObjectName.setText(getResources().getString(R.string.object_name) + " " + result.getName());
                 } else {
-                    childObjectType.append(getResources().getString(R.string.object_type) + " " + result.getType());
-                    childObjectName.append(getResources().getString(R.string.object_name) + " " + result.getName());
+                    childObjectType.setText(getResources().getString(R.string.object_type) + " " + result.getType());
+                    childObjectName.setText(getResources().getString(R.string.object_name) + " " + result.getName());
                 }
 
                 captureEventBtn.setClickable(true);

@@ -90,7 +90,7 @@
 
                     <TextView
                         android:id="@+id/CompanyCell"
-                        android:text="Company"
+                        android:text="Location"
                         style="@style/tableCell" />
 
                     <TextView
