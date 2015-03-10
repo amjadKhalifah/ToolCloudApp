@@ -3,11 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@android:color/white"
-    android:orientation="vertical" >
-    <include layout="@layout/actionbar_layout"/>
+    android:orientation="vertical">
+
+    <include layout="@layout/actionbar_layout" />
+
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <toolcloud.tum.toolcloudapp.component.AccordionView
             android:id="@+id/accordion_views"
@@ -22,7 +24,7 @@
             accordion:section_headers="@array/accordion_sections_intake"
             accordion:section_visibility="@array/accordion_visibility"
             android:background="#fff5f5f5"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
@@ -48,7 +50,7 @@
                         style="@style/tableCell"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:ellipsize="marquee"/>
+                        android:ellipsize="marquee" />
                 </TableRow>
 
                 <TableRow
@@ -99,97 +101,103 @@
 
             </TableLayout>
 
+            <LinearLayout
+                android:id="@+id/tool_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:shrinkColumns="*"
-                android:id="@+id/toolLayout"
-                android:background="#ffffff"
-                android:layout_margin="10dp">
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:shrinkColumns="*"
+                    android:id="@+id/toolLayout"
+                    android:background="#ffffff"
+                    android:layout_margin="10dp">
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:id="@+id/ToolIdCell"
+                            android:text="ID"
+                            style="@style/tableCell" />
 
 
-                <TableRow
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/ToolIdValue"
+                            style="@style/tableCell"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:ellipsize="marquee" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/ToolIdCell"
-                        android:text="ID"
-                        style="@style/tableCell" />
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/ToolIdValue"
-                        style="@style/tableCell"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:ellipsize="marquee"/>
-                </TableRow>
+                        <TextView
+                            android:layout_width="170dp"
+                            android:id="@+id/ToolNameCell"
+                            android:text="Name"
+                            style="@style/tableCell" />
 
-                <TableRow
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/ToolNameValue"
+                            style="@style/tableCell" />
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="170dp"
-                        android:id="@+id/ToolNameCell"
-                        android:text="Name"
-                        style="@style/tableCell" />
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/ToolNameValue"
-                        style="@style/tableCell" />
-                </TableRow>
+                        <TextView
+                            android:id="@+id/ToolHeightCell"
+                            android:text="Height"
+                            style="@style/tableCell" />
 
-                <TableRow
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/ToolHeightValue"
+                            style="@style/tableCell" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/ToolHeightCell"
-                        android:text="Height"
-                        style="@style/tableCell" />
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/ToolHeightValue"
-                        style="@style/tableCell" />
-                </TableRow>
+                        <TextView
+                            android:id="@+id/ToolLengthCell"
+                            android:text="Length"
+                            style="@style/tableCell" />
 
-                <TableRow
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/ToolLengthValue"
+                            style="@style/tableCell" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/ToolLengthCell"
-                        android:text="Length"
-                        style="@style/tableCell" />
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/ToolLengthValue"
-                        style="@style/tableCell" />
-                </TableRow>
-                <TableRow
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/ToolAggrLengthCell"
+                            android:text="Aggregation Length"
+                            style="@style/tableCell" />
 
-                    <TextView
-                        android:id="@+id/ToolAggrLengthCell"
-                        android:text="Aggregation Length"
-                        style="@style/tableCell" />
+                        <TextView
+                            android:id="@+id/ToolAggLengthValue"
+                            style="@style/tableCell"
+                            android:layout_width="wrap_content" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/ToolAggLengthValue"
-                        style="@style/tableCell"
-                        android:layout_width="wrap_content"/>
-                </TableRow>
-
-            </TableLayout>
-
+                </TableLayout>
+            </LinearLayout>
 
         </toolcloud.tum.toolcloudapp.component.AccordionView>
     </ScrollView>

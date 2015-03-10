@@ -8,6 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.preference.PreferenceManager;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -167,7 +170,7 @@ public class PreScanningActivity extends Activity {
             } catch (Exception e) {
                 Log.d("ToolCloud", e.getMessage());
 //                Toast.makeText(getApplicationContext(), "Error communicating with server " + e.getMessage(), Toast.LENGTH_LONG);
-                return new ToolCloudObject("Error connecting to serve", "Error connecting to server", "undefined");
+                return new ToolCloudObject("Error connecting to server", "Error connecting to server", "undefined");
             } finally {
                 urlConnection.disconnect();
             }
@@ -181,7 +184,7 @@ public class PreScanningActivity extends Activity {
         protected void onPostExecute(ToolCloudObject result) {
             toolCloudObject = result;
             if (result.getType().equals("undefined")){
-                objectName.setError(result.getName());
+                objectName.setText(Html.fromHtml("<font color='red'>" + result.getName() + "</font>"));
             }
             else {
 //                objectId.setText(getResources().getString(R.string.object_id) + " " + result.getId());

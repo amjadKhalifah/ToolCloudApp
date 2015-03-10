@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class IntakeDetailsActivity extends Activity {
     private TextView inId, inName, inHeight, inLength, tId, tName, tHeight, tLength, tAggLength;
     private int intakeSelectedIndex = -1, toolSelectedIndex = -1;
     AccordionView accordion;
+    LinearLayout toolContainer;
     private TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class IntakeDetailsActivity extends Activity {
         tLength = (TextView) findViewById(R.id.ToolLengthValue);
         tAggLength = (TextView) findViewById(R.id.ToolAggLengthValue);
         accordion = (AccordionView)findViewById(R.id.accordion_views);
-
+        toolContainer = (LinearLayout)findViewById(R.id.tool_container);
         Bundle b = getIntent().getExtras();
         if (b.getInt("intake") != -1) {
             intakeSelectedIndex = b.getInt("intake");
@@ -80,8 +82,7 @@ public class IntakeDetailsActivity extends Activity {
                     int aggLength = inLength+tLength;
                     tAggLength.setText(""+aggLength);
                 } else { // case of intake has no tool; hide the toolayout
-                    hideToolLayout();
-
+                    toolContainer.setVisibility(View.GONE);
                 }
 
             }
@@ -101,15 +102,7 @@ public class IntakeDetailsActivity extends Activity {
 
     }
 
-//TODO ?
-    private void hideToolLayout() {
 
-        for(int i=0; i<((ViewGroup)accordion).getChildCount(); ++i) {
-            View nextChild = ((ViewGroup)accordion).getChildAt(i);
-            ((ViewManager)nextChild.getParent()).removeView(nextChild);
-        }
-
-    }
 
 
     private void hideIntakeLayout() {
