@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-import toolcloud.tum.toolcloudapp.component.AccordionWidgetDemoActivity;
 
 
 public class DashboardActivity extends Activity {

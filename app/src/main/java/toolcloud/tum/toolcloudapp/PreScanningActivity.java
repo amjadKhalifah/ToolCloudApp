@@ -161,7 +161,6 @@ public class PreScanningActivity extends Activity {
             // HTTP Get
             HttpURLConnection urlConnection = null;
             try {
-//                Log.d("ddd",getURL() + QUERY_PATH+ scannedObject);
                 URL url = new URL(getURL() + QUERY_PATH+ scannedObject);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 in = new BufferedInputStream(urlConnection.getInputStream());
@@ -169,7 +168,6 @@ public class PreScanningActivity extends Activity {
                 return parseXML(response);
             } catch (Exception e) {
                 Log.d("ToolCloud", e.getMessage());
-//                Toast.makeText(getApplicationContext(), "Error communicating with server " + e.getMessage(), Toast.LENGTH_LONG);
                 return new ToolCloudObject("Error connecting to server", "Error connecting to server", "undefined");
             } finally {
                 urlConnection.disconnect();
@@ -190,7 +188,7 @@ public class PreScanningActivity extends Activity {
 //                objectId.setText(getResources().getString(R.string.object_id) + " " + result.getId());
                 objectType.setText(getResources().getString(R.string.object_type) + " " + result.getType());
                 objectName.setText(getResources().getString(R.string.object_name) + " " + result.getName());
-                continueBtn.setClickable(true);
+                continueBtn.setVisibility(View.VISIBLE);
             }
         }
 
