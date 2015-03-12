@@ -5,6 +5,11 @@ public class ToolCloudObject {
 	private String name;
 	private String type;
 	private String id;
+    private boolean aggregatedAsChild;
+
+
+    private boolean aggregatedAsParent;
+
 	public ToolCloudObject() {
 
 	}
@@ -38,6 +43,23 @@ public class ToolCloudObject {
     public void setId(String id) {
         this.id = id;
     }
+    public boolean isAggregatedAsParent() {
+        return aggregatedAsParent;
+    }
+
+    public void setAggregatedAsParent(boolean aggregatedAsParent) {
+        this.aggregatedAsParent = aggregatedAsParent;
+    }
+
+    public boolean isAggregatedAsChild() {
+        return aggregatedAsChild;
+    }
+
+    public void setAggregatedAsChild(boolean aggregatedAsChild) {
+        this.aggregatedAsChild = aggregatedAsChild;
+    }
+
+
 
     @Override
     public String toString() {

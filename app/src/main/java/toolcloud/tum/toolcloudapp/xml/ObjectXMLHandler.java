@@ -43,6 +43,10 @@ public class ObjectXMLHandler extends DefaultHandler {
             toolCloudObject.setType(currentValue);
         } else if (localName.equalsIgnoreCase("id")) {
             toolCloudObject.setId(currentValue);
+        } else if (localName.equalsIgnoreCase("aggregatedAsChild")) {
+            toolCloudObject.setAggregatedAsChild((currentValue.equals("true")? true:false));
+        } else if (localName.equalsIgnoreCase("aggregatedAsParent")) {
+            toolCloudObject.setAggregatedAsParent((currentValue.equals("true")? true:false));
         }
 
     }

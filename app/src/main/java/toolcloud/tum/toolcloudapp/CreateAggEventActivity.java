@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,11 +44,12 @@ import toolcloud.tum.toolcloudapp.xml.ObjectXMLHandler;
 public class CreateAggEventActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "ToolCloud";
     private String parentCode, childCode;
+    private ToolCloudObject parentObject, childObject;
     private Button parentScanBtn, childScanBtn, captureEventBtn;
     TextView parentObjectName, parentObjectType, childObjectName, childObjectType;
     private boolean parentScan = true;
     private boolean isAggregation = true;
-    private TextView title;
+    private TextView title, validationMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_create_agg_event);
         title = (TextView)findViewById(R.id.title);
-
+        validationMessage = (TextView)findViewById(R.id.validationMessage);
 
 
 
@@ -107,6 +109,7 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        validationMessage.clearComposingText();
         if (v.getId() == R.id.parent_scan_button) {
             parentScan = true;
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
@@ -116,6 +119,14 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             startActivityForResult(intent, 0);
         } else if (v.getId() == R.id.capture_event) {
+
+            if (isAggregation) {
+                String validationResult = validateScans();
+                if (!validationResult.isEmpty()) {
+                    validationMessage.setText(Html.fromHtml("<font color='red'>" + validationResult + "</font>"));
+                    return;
+                }
+            }
             Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"), Locale.getDefault());
             String timeZone = new SimpleDateFormat("Z").format(calendar.getTime());
             timeZone = timeZone.substring(0, 3) + ":" + timeZone.substring(3, 5);
@@ -129,6 +140,38 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
             runner.execute();
         }
 
+    }
+
+    private String validateScans() {
+        if(parentObject==null || childObject==null)
+        {
+            return "Please scan the parent and the child objects.";
+
+        }
+        if (childObject.getType().equals("machine")) {
+            return "Cannot aggregate machine as a child object.";
+        }
+        if (parentObject.getType().equals("tool")) {
+            return "Cannot aggregate tool as a parent object.";
+        }
+        if (childObject.getType().equals(parentObject.getType())) {
+            return "Cannot aggregate objects of the same type.";
+        }
+        if (parentObject.getType().equals("intake") && !childObject.getType().equals("tool") ) {
+            return "Child object should be tool in case of a parent intake";
+        }
+
+        if (parentObject.getType().equals("intake") && parentObject.isAggregatedAsParent() ) {
+            return "Intake already aggregated as a parent";
+        }
+        if (childObject.getType().equals("tool") && childObject.isAggregatedAsChild() ) {
+            return "Tool already aggregated as a child";
+        }
+
+        if (childObject.getType().equals("intake") && childObject.isAggregatedAsChild() ) {
+            return "Intake already aggregated as a child";
+        }
+        return "";
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -237,9 +280,8 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
                         read = br.readLine();
 
                     }
-
                     Log.d(TAG, statusCode + ":" + urlConnection.getResponseMessage() + ":" + sb);
-
+                    return urlConnection.getResponseMessage() +":" + sb;
                 }
 
 
@@ -248,19 +290,24 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
             } catch (IOException e) {
                 e.printStackTrace();
 
-                return "event failed";
+                return "failed";
             }
 
-            return "event posted";
+            return "posted";
         }
 
         @Override
         protected void onPostExecute(String result) {
-            if (isAggregation) {
-                Toast.makeText(getApplicationContext(), "Aggregation created successfully", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Disaggregation created successfully", Toast.LENGTH_LONG).show();
-            }
+
+           if (result.equals("posted")) {
+               if (isAggregation) {
+                   Toast.makeText(getApplicationContext(), "Aggregation created successfully", Toast.LENGTH_LONG).show();
+               } else {
+                   Toast.makeText(getApplicationContext(), "Disaggregation created successfully", Toast.LENGTH_LONG).show();
+               }
+           }else{
+               Toast.makeText(getApplicationContext(), result.substring(0,102), Toast.LENGTH_LONG).show();
+           }
         }
 
         private String getXML() {
@@ -316,13 +363,14 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
         @Override
         protected void onPostExecute(ToolCloudObject result) {
             if (result.getType().equals("undefined")) {
-                parentObjectName.setError(result.getName());
+                parentObjectName.setText(Html.fromHtml("<font color='red'>" + result.getName() + "</font>"));
             } else {
                 if (parentScan) {
-//                    pare.setText(getResources().getString(R.string.object_id) + " " + result.getId());
+                    parentObject = result;
                     parentObjectType.setText(getResources().getString(R.string.object_type) + " " + result.getType());
                     parentObjectName.setText(getResources().getString(R.string.object_name) + " " + result.getName());
                 } else {
+                    childObject = result;
                     childObjectType.setText(getResources().getString(R.string.object_type) + " " + result.getType());
                     childObjectName.setText(getResources().getString(R.string.object_name) + " " + result.getName());
                 }
