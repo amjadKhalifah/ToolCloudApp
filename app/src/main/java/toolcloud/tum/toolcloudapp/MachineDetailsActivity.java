@@ -2,24 +2,21 @@ package toolcloud.tum.toolcloudapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import junit.framework.Test;
 
 import toolcloud.tum.toolcloudapp.model.DetailsResult;
-import toolcloud.tum.toolcloudapp.model.Event;
 import toolcloud.tum.toolcloudapp.model.Intake;
 import toolcloud.tum.toolcloudapp.model.Machine;
 import toolcloud.tum.toolcloudapp.model.Tool;
@@ -27,7 +24,7 @@ import toolcloud.tum.toolcloudapp.model.Tool;
 
 public class MachineDetailsActivity extends Activity {
     private DetailsResult result;
-    private TextView mId, mName, mDer, mCompany;
+    private TextView mId, mName, mDer, mCompany, mCad;
     private ListView contentsListView, toolListView;
     private TextView title;
 
@@ -37,7 +34,7 @@ public class MachineDetailsActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_machine_details);
 
-        title = (TextView)findViewById(R.id.title);
+        title = (TextView) findViewById(R.id.title);
         title.setText(getResources().getString(R.string.dashboard_scan));
         result = DetailsResult.getInstance();
         Log.d("ToolCloud", "set the result instance");
@@ -45,13 +42,28 @@ public class MachineDetailsActivity extends Activity {
         mName = (TextView) findViewById(R.id.NameValue);
         mDer = (TextView) findViewById(R.id.DerValue);
         mCompany = (TextView) findViewById(R.id.CompanyValue);
+        mCad = (TextView) findViewById(R.id.CadValue);
         contentsListView = (ListView) findViewById(R.id.contents_listView);
         toolListView = (ListView) findViewById(R.id.tools_listView);
+
+        mCad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!result.getMachine().getCad().isEmpty() && result.getMachine().getCad() != null) {
+                    Intent intent = new Intent(getApplicationContext(), PDFViewerActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("link", result.getMachine().getCad()); //Your id
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                }
+            }
+        });
         setMachineValues();
         setIntakesValues();
         setToolsValues();
 
     }
+
 
     private void setIntakesValues() {
         ListAdapter listProvider = new ArrayAdapter<Intake>(getApplicationContext(), R.layout.list_item, result.getIntakes());
@@ -64,15 +76,13 @@ public class MachineDetailsActivity extends Activity {
 
                 // ListView Clicked item index
                 int itemPosition = position;
-                Log.d("ToolCloud", "clicked "+position);
-                // ListView Clicked item value
+                Log.d("ToolCloud", "clicked " + position);
 
                 Intent intent = new Intent(getApplicationContext(), IntakeDetailsActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("intake",position); //Your id
+                b.putInt("intake", position); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-//                finish();
             }
         });
     }
@@ -88,19 +98,20 @@ public class MachineDetailsActivity extends Activity {
 
                 // ListView Clicked item index
                 int itemPosition = position;
-                Log.d("ToolCloud", "clicked "+position);
+                Log.d("ToolCloud", "clicked " + position);
                 // ListView Clicked item value
 
                 Intent intent = new Intent(getApplicationContext(), IntakeDetailsActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("intake",-1); //Your id
-                b.putInt("tool",position); //Your id
+                b.putInt("intake", -1); //Your id
+                b.putInt("tool", position); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
 //                finish();
             }
         });
     }
+
     private void setMachineValues() {
         Machine machine = result.getMachine();
         if (machine != null) {

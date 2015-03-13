@@ -8,6 +8,7 @@ public class Machine {
 	private String name;
 	private String der;//?
 	private String companyId;
+    private String cad;
 	public Machine() {
 
 	}
@@ -42,7 +43,17 @@ public class Machine {
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
 	}
-	@Override
+
+
+
+    public String getCad() {
+        return cad;
+    }
+    public void setCad(String cad) {
+        this.cad = cad;
+    }
+
+    @Override
 	public String toString() {
 		return "<Machine machineId='" + machineId + "' name='" + name + "' der='" + der
 				+ "' companyId='" + companyId + "'/>";

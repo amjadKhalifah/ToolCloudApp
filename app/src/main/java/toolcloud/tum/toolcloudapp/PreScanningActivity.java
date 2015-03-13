@@ -9,8 +9,6 @@ import android.os.Bundle;
 
 import android.preference.PreferenceManager;
 import android.text.Html;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -255,7 +253,6 @@ public class PreScanningActivity extends Activity {
 
 
     private class RequestDataTask extends AsyncTask<String, String, DetailsResult> {
-//        public static final String QUERY_PATH = "/ToolCloud/tc/";
         private String resp;
 
         @Override

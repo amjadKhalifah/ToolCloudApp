@@ -73,6 +73,8 @@ public class ResultsHandler extends DefaultHandler {
             machine.setDer(currentValue);
         } else if (localName.equalsIgnoreCase("companyId")) {
             machine.setCompanyId(currentValue);
+        }else if (localName.equalsIgnoreCase("cad")) {
+            machine.setCad(currentValue);
         } else if (localName.equalsIgnoreCase("Machine")) {
             result.setMachine(machine);
         } else if (localName.equalsIgnoreCase("Intake_intakeId")) {
@@ -85,6 +87,8 @@ public class ResultsHandler extends DefaultHandler {
             intake.setHeight(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_machineId")) {
             intake.setMachineId(currentValue);
+        } else if (localName.equalsIgnoreCase("Intake_cad")) {
+            intake.setCad(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool_toolId")) {
             intakeTool.setToolId(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool_name")) {
@@ -95,6 +99,8 @@ public class ResultsHandler extends DefaultHandler {
             intakeTool.setHeight(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool_intakeId")) {
             intakeTool.setIntakeId(currentValue);
+        } else if (localName.equalsIgnoreCase("Intake_Tool_cad")) {
+            intakeTool.setCad(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool")) {
             intake.setTool(intakeTool);
         } else if (localName.equalsIgnoreCase("Intake")) {
@@ -109,7 +115,9 @@ public class ResultsHandler extends DefaultHandler {
             tool.setHeight(currentValue);
         } else if (localName.equalsIgnoreCase("Tool_intakeId")) {
             tool.setIntakeId(currentValue);
-        } else if (localName.equalsIgnoreCase("Tool")) {
+        } else if (localName.equalsIgnoreCase("Tool_cad")) {
+            tool.setCad(currentValue);
+        }else if (localName.equalsIgnoreCase("Tool")) {
             result.addTool(tool);
         }
 

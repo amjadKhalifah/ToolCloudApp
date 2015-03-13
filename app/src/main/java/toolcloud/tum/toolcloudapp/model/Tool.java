@@ -11,6 +11,7 @@ public class Tool  {
 	private String height;
 	private String machineId;
 	private String intakeId;
+    private String cad;
 	public Tool() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -61,7 +62,15 @@ public class Tool  {
 	public void setIntakeId(String intakeId) {
 		this.intakeId = intakeId;
 	}
-	@Override
+
+    public String getCad() {
+        return cad;
+    }
+    public void setCad(String cad) {
+        this.cad = cad;
+    }
+
+    @Override
 	public String toString() {
 //		return "<Tool toolId='" + toolId + "' name='" + name + "' length='" + length
 //				+ "' height='" + height + "' machineId='" + machineId

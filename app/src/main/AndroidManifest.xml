@@ -62,7 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- maybe also for delete-->
+        <!-- maybe also for delete -->
         <activity
             android:name=".ScanObjectActivity"
             android:label="@string/title_activity_scan_machine" >
@@ -72,7 +72,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard" >
@@ -81,7 +80,6 @@
             android:name=".CreateAggEventActivity"
             android:label="@string/dashboard_aggregate" >
         </activity>
-
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
@@ -98,10 +96,13 @@
             android:name=".MachineDetailsActivity"
             android:label="@string/title_activity_machine_details" >
         </activity>
-
         <activity
             android:name=".IntakeDetailsActivity"
             android:label="@string/title_activity_intake_details" >
+        </activity>
+        <activity
+            android:name=".PDFViewerActivity"
+            android:label="@string/title_activity_pdfviewer" >
         </activity>
     </application>
 

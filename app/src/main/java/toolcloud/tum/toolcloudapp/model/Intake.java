@@ -11,6 +11,7 @@ public class Intake {
 	private String height;
 	private String machineId;
     private Tool tool;
+    private String cad;
 	public Intake() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -62,6 +63,15 @@ public class Intake {
     public void setTool(Tool tool) {
         this.tool = tool;
     }
+
+
+    public String getCad() {
+        return cad;
+    }
+    public void setCad(String cad) {
+        this.cad = cad;
+    }
+
 
     @Override
 	public String toString() {

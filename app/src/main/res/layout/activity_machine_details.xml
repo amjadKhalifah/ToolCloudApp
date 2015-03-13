@@ -97,6 +97,22 @@
                         android:id="@+id/CompanyValue"
                         style="@style/tableCell" />
                 </TableRow>
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="170dp"
+                        android:id="@+id/CadCell"
+                        android:text="CAD"
+                        style="@style/tableCell" />
+
+                    <TextView
+                        android:id="@+id/CadValue"
+                        android:text="Display CAD"
+                        style="@style/tableCell" />
+                </TableRow>
 
             </TableLayout>
 
