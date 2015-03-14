@@ -37,6 +37,7 @@ import java.util.TimeZone;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import toolcloud.tum.toolcloudapp.component.GPSTracker;
 import toolcloud.tum.toolcloudapp.model.ToolCloudObject;
 import toolcloud.tum.toolcloudapp.xml.ObjectXMLHandler;
 
@@ -136,7 +137,21 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
             Log.d(TAG, "time" + timeString + parentCode + "-" + childCode);
 
             String action = isAggregation ? "ADD":"DELETE";
-            CreateEventAsyncTaskRunner runner = new CreateEventAsyncTaskRunner(parentCode, childCode, timeString, timeZone, action);
+            GPSTracker gps = new GPSTracker(this);
+            String locationStr="";
+            if(gps.canGetLocation()) { // gps enabled} // return boolean true/false
+
+                double lat = gps.getLatitude(); // returns latitude
+                double lon =    gps.getLongitude(); // returns longitude
+//                Log.d("ToolCloud", lat +","+lon);
+                locationStr = lat +","+lon;
+            }
+            else {
+                gps.showSettingsAlert();
+            }
+                gps.stopUsingGPS();
+
+            CreateEventAsyncTaskRunner runner = new CreateEventAsyncTaskRunner(parentCode, childCode, timeString, timeZone, action,locationStr);
             runner.execute();
         }
 
@@ -232,15 +247,16 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
         return query_url;
     }
     private class CreateEventAsyncTaskRunner extends AsyncTask<String, String, String> {
-        private String locationCode, toolCode, timeString, timeZoneOffset, action;
+        private String locationCode, toolCode, timeString, timeZoneOffset, action,locationStr;
 
 
-        private CreateEventAsyncTaskRunner(String locationCode, String toolCode, String timeString, String timeZoneOffset, String action) {
+        private CreateEventAsyncTaskRunner(String locationCode, String toolCode, String timeString, String timeZoneOffset, String action,String locationStr) {
             this.locationCode = locationCode;
             this.toolCode = toolCode;
             this.timeString = timeString;
             this.timeZoneOffset = timeZoneOffset;
             this.action = action;
+            this.locationStr = locationStr;
 
         }
 
@@ -311,8 +327,11 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
         }
 
         private String getXML() {
-            //TODO check the bizstep, dispostion and the read point.
-            String s_xml = "<EPCISDocument ><EPCISBody><EventList><AggregationEvent> <eventTime>" + this.timeString + "</eventTime> <eventTimeZoneOffset>" + this.timeZoneOffset + "</eventTimeZoneOffset> <parentID>" + locationCode + "</parentID> <childEPCs><epc>" + this.toolCode + "</epc></childEPCs><action>" + this.action.toUpperCase() + "</action> <bizStep>urn:epcglobal:cbv:bizstep:receiving</bizStep> <disposition>urn:epcglobal:cbv:disp:in_progress</disposition> <readPoint><id>" + this.locationCode + "</id></readPoint></AggregationEvent></EventList></EPCISBody></EPCISDocument>";
+            if (locationStr.isEmpty()){
+
+                locationStr = locationCode;
+            }
+            String s_xml = "<EPCISDocument ><EPCISBody><EventList><AggregationEvent> <eventTime>" + this.timeString + "</eventTime> <eventTimeZoneOffset>" + this.timeZoneOffset + "</eventTimeZoneOffset> <parentID>" + locationCode + "</parentID> <childEPCs><epc>" + this.toolCode + "</epc></childEPCs><action>" + this.action.toUpperCase() + "</action> <bizStep>urn:epcglobal:cbv:bizstep:receiving</bizStep> <disposition>urn:epcglobal:cbv:disp:in_progress</disposition> <readPoint><id>" + this.locationStr + "</id></readPoint></AggregationEvent></EventList></EPCISBody></EPCISDocument>";
 
             Log.d(TAG, "posting:" + s_xml);
 

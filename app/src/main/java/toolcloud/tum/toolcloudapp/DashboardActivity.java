@@ -49,6 +49,9 @@ public class DashboardActivity extends Activity {
             public void onClick(View view) {
                 // Launching scan Feed Screen
                 Intent i = new Intent(getApplicationContext(), PreScanningActivity.class);
+                Bundle b = new Bundle();
+                b.putBoolean("location",false);
+                i.putExtras(b);
                 startActivity(i);
             }
         });
@@ -63,7 +66,6 @@ public class DashboardActivity extends Activity {
                 Bundle b = new Bundle();
                 b.putBoolean("isAggregation",true);
                 i.putExtras(b);
-//                finish();
                 startActivity(i);
             }
         });
@@ -78,7 +80,6 @@ public class DashboardActivity extends Activity {
                 Bundle b = new Bundle();
                 b.putBoolean("isAggregation",false);
                 i.putExtras(b);
-//                finish();
                 startActivity(i);
             }
         });
@@ -88,9 +89,12 @@ public class DashboardActivity extends Activity {
 
             @Override
             public void onClick(View view) {
-                // Launching News Feed Screen
-//                Intent i = new Intent(getApplicationContext(), AccordionWidgetDemoActivity.class);
-//                startActivity(i);
+//                Launching News Feed Screen
+                Intent i = new Intent(getApplicationContext(), PreScanningActivity.class);
+                Bundle b = new Bundle();
+                b.putBoolean("location",true);
+                i.putExtras(b);
+                startActivity(i);
             }
         });
 

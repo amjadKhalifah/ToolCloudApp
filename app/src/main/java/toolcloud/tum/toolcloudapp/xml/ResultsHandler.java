@@ -75,6 +75,8 @@ public class ResultsHandler extends DefaultHandler {
             machine.setCompanyId(currentValue);
         }else if (localName.equalsIgnoreCase("cad")) {
             machine.setCad(currentValue);
+        }else if (localName.equalsIgnoreCase("location")) {
+            machine.setLocation(currentValue);
         } else if (localName.equalsIgnoreCase("Machine")) {
             result.setMachine(machine);
         } else if (localName.equalsIgnoreCase("Intake_intakeId")) {
@@ -89,6 +91,8 @@ public class ResultsHandler extends DefaultHandler {
             intake.setMachineId(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_cad")) {
             intake.setCad(currentValue);
+        } else if (localName.equalsIgnoreCase("Intake_location")) {
+            intake.setLocation(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool_toolId")) {
             intakeTool.setToolId(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool_name")) {
@@ -101,7 +105,9 @@ public class ResultsHandler extends DefaultHandler {
             intakeTool.setIntakeId(currentValue);
         } else if (localName.equalsIgnoreCase("Intake_Tool_cad")) {
             intakeTool.setCad(currentValue);
-        } else if (localName.equalsIgnoreCase("Intake_Tool")) {
+        }else if (localName.equalsIgnoreCase("Intake_Tool_location")) {
+            intakeTool.setLocation(currentValue);
+        }else if (localName.equalsIgnoreCase("Intake_Tool")) {
             intake.setTool(intakeTool);
         } else if (localName.equalsIgnoreCase("Intake")) {
             result.addIntake(intake);
@@ -117,6 +123,8 @@ public class ResultsHandler extends DefaultHandler {
             tool.setIntakeId(currentValue);
         } else if (localName.equalsIgnoreCase("Tool_cad")) {
             tool.setCad(currentValue);
+        }else if (localName.equalsIgnoreCase("Tool_location")) {
+            tool.setLocation(currentValue);
         }else if (localName.equalsIgnoreCase("Tool")) {
             result.addTool(tool);
         }

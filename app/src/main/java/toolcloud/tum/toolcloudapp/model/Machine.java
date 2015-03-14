@@ -9,6 +9,7 @@ public class Machine {
 	private String der;//?
 	private String companyId;
     private String cad;
+    private String location;
 	public Machine() {
 
 	}
@@ -51,6 +52,12 @@ public class Machine {
     }
     public void setCad(String cad) {
         this.cad = cad;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override

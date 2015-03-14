@@ -47,6 +47,7 @@ public class PreScanningActivity extends Activity {
     // holds the object returned by the service
     ToolCloudObject toolCloudObject;
     private String URL;
+    private boolean locationView =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class PreScanningActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_pre_scanning);
         title = (TextView)findViewById(R.id.title);
-        title.setText(getResources().getString(R.string.dashboard_scan));
+
         objectName = (TextView) findViewById(R.id.objectName);
         objectType = (TextView) findViewById(R.id.objectType);
 //        objectId = (TextView) findViewById(R.id.objectId);
@@ -69,17 +70,40 @@ public class PreScanningActivity extends Activity {
         });
 
 
+        Bundle b = getIntent().getExtras();
+        locationView = b.getBoolean("location");
+        if(locationView){
+            title.setText(getResources().getString(R.string.dashboard_update_loc));
+            continueBtn.setText("Locate");
+        }else{
+            title.setText(getResources().getString(R.string.dashboard_scan));
+        }
 
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestData();
+                if (!locationView){
+                 requestData();
+                }else{
+                    showMap();
+
+                }
 
             }
         });
     }
 
+    private void showMap() {
+        if (toolCloudObject!=null) {
 
+            Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+            Bundle b = new Bundle();
+            b.putString("location", toolCloudObject.getLocation());
+            b.putString("name",toolCloudObject.getName());
+            i.putExtras(b);
+            startActivity(i);
+        }
+    }
 
 
     @Override

@@ -6,11 +6,11 @@ public class ToolCloudObject {
 	private String type;
 	private String id;
     private boolean aggregatedAsChild;
-
-
     private boolean aggregatedAsParent;
+    private String location;
 
-	public ToolCloudObject() {
+
+    public ToolCloudObject() {
 
 	}
 
@@ -59,6 +59,13 @@ public class ToolCloudObject {
         this.aggregatedAsChild = aggregatedAsChild;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
 
     @Override

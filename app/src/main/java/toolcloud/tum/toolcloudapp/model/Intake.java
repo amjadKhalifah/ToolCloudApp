@@ -12,6 +12,7 @@ public class Intake {
 	private String machineId;
     private Tool tool;
     private String cad;
+    private String location;
 	public Intake() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -70,6 +71,12 @@ public class Intake {
     }
     public void setCad(String cad) {
         this.cad = cad;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 
