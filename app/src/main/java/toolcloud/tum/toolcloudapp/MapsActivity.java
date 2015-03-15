@@ -86,7 +86,7 @@ public class MapsActivity extends FragmentActivity {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
             }
         }else {
-            Toast.makeText(getApplicationContext(), "Location not set for object", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "Location not set for object", Toast.LENGTH_LONG).show();
         }
     }
 }
