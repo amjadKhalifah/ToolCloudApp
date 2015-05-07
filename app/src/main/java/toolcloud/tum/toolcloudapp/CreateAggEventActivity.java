@@ -331,7 +331,14 @@ public class CreateAggEventActivity extends Activity implements View.OnClickList
 
                 locationStr = locationCode;
             }
-            String s_xml = "<EPCISDocument ><EPCISBody><EventList><AggregationEvent> <eventTime>" + this.timeString + "</eventTime> <eventTimeZoneOffset>" + this.timeZoneOffset + "</eventTimeZoneOffset> <parentID>" + locationCode + "</parentID> <childEPCs><epc>" + this.toolCode + "</epc></childEPCs><action>" + this.action.toUpperCase() + "</action> <bizStep>urn:epcglobal:cbv:bizstep:receiving</bizStep> <disposition>urn:epcglobal:cbv:disp:in_progress</disposition> <readPoint><id>" + this.locationStr + "</id></readPoint></AggregationEvent></EventList></EPCISBody></EPCISDocument>";
+            String s_xml = "<epcis:EPCISDocument\n" +
+                    "    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+                    "    xmlns:epcis=\"urn:epcglobal:epcis:xsd:1\"\n" +
+                    "    xmlns:epcglobal=\"urn:epcglobal:xsd:1\"\n" +
+                    "    xsi:schemaLocation=\"urn:epcglobal:epcis:xsd:1 EPCglobal-epcis-1_0.xsd\"\n" +
+                    "    creationDate=\"2008-03-16T22:13:16.397+01:00\"\n" +
+                    "    schemaVersion=\"1.0\">\n" +
+                    "<EPCISBody><EventList><AggregationEvent> <eventTime>" + this.timeString + "</eventTime> <eventTimeZoneOffset>" + this.timeZoneOffset + "</eventTimeZoneOffset> <parentID>" + locationCode + "</parentID> <childEPCs><epc>" + this.toolCode + "</epc></childEPCs><action>" + this.action.toUpperCase() + "</action> <bizStep>urn:epcglobal:cbv:bizstep:receiving</bizStep> <disposition>urn:epcglobal:cbv:disp:in_progress</disposition> <readPoint><id>" + this.locationStr + "</id></readPoint></AggregationEvent></EventList></EPCISBody></epcis:EPCISDocument>";
 
             Log.d(TAG, "posting:" + s_xml);
 
